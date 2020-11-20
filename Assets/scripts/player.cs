@@ -30,11 +30,26 @@ public class Player : MonoBehaviour
 
     private bool _isRotating = false;
 
+    private Vector3 _playerJumpMovement = new Vector3(0, 0, 0);
+
     // Start is called before the first frame update
     private void OnEnable()
     {
         _inputReader.cameraMoveEvent += cameraMoveEvent;
         _inputReader.moveEvent += moveEvent;
+        _inputReader.jumpEvent += _inputReader_jumpEvent;
+        _inputReader.jumpCanceledEvent += _inputReader_jumpCanceledEvent;
+    }
+
+    private void _inputReader_jumpCanceledEvent()
+    {
+        _playerJumpMovement = new Vector3(0, 0, 0);
+    }
+
+    private void _inputReader_jumpEvent()
+    {
+        if (_controller.isGrounded)
+            _playerJumpMovement = new Vector3(0, 2.7f, 0);
     }
 
     private void moveEvent(Vector2 arg0, bool isMoving)
@@ -58,6 +73,8 @@ public class Player : MonoBehaviour
             _freeLookCamera.m_YAxis.Value += _cameraMovement.y * Time.deltaTime;
         }
 
+        Vector3 moveDir = new Vector3(0, 0, 0);
+
         if (_playerMovement.sqrMagnitude >= 0.1f)
         {
             var cameraSpaceDir = (_cameraTransform.rotation * _playerMovement);
@@ -68,7 +85,18 @@ public class Player : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSomoothVelocity, turnSmoothTime);
 
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            _controller.Move(cameraSpaceDir * _speed * Time.deltaTime);
+
+            moveDir += cameraSpaceDir;
         }
+
+        _playerJumpMovement -= new Vector3(0, 9, 0) * Time.deltaTime;
+        moveDir += _playerJumpMovement;
+
+        var flags = _controller.Move(moveDir * _speed * Time.deltaTime);
+
+        if ((flags & CollisionFlags.CollidedBelow) != 0)
+            _playerJumpMovement = new Vector3(0, 0, 0);
+
+        Debug.Log(_controller.isGrounded ? "GROUNDED" : "NOT GROUNDED");
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 62bdda115bb986542aef4ba8518bc820,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1733,7 +1734,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 963194228}
   _freeLookCamera: {fileID: 926716777}
   _controller: {fileID: 1717080231}
-  _speed: 7
+  _speed: 12
   turnSmoothTime: 0.1
 --- !u!143 &1717080231
 CharacterController:
@@ -1750,7 +1751,7 @@ CharacterController:
   m_Radius: 0.68
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.2
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1 &1846013283
