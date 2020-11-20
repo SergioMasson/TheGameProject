@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float turnSmoothTime = 0.1f;
 
+    [SerializeField]
+    private AnimationCurve _jumpCurve;
+
     private float turnSomoothVelocity;
 
     private Vector2 _cameraMovement = new Vector2(0, 0);
@@ -32,6 +35,10 @@ public class Player : MonoBehaviour
 
     private Vector3 _playerJumpMovement = new Vector3(0, 0, 0);
 
+    private float jumpStartTime = 0.0f;
+
+    private float jumpTime = 0.0f;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -39,17 +46,36 @@ public class Player : MonoBehaviour
         _inputReader.moveEvent += moveEvent;
         _inputReader.jumpEvent += _inputReader_jumpEvent;
         _inputReader.jumpCanceledEvent += _inputReader_jumpCanceledEvent;
+
+        var key = _jumpCurve.keys[_jumpCurve.length - 1];
+        jumpTime = key.time;
     }
 
     private void _inputReader_jumpCanceledEvent()
     {
-        _playerJumpMovement = new Vector3(0, 0, 0);
+        jumpStartTime = 0;
     }
 
     private void _inputReader_jumpEvent()
     {
         if (_controller.isGrounded)
-            _playerJumpMovement = new Vector3(0, 2.7f, 0);
+        {
+            jumpStartTime = Time.time;
+        }
+    }
+
+    private Vector3 GetJumpVector()
+    {
+        if (jumpStartTime <= 0)
+            return new Vector3(0, 0, 0);
+
+        var currentTime = Time.time - jumpStartTime;
+
+        if (currentTime >= jumpTime || currentTime <= 0)
+            return new Vector3(0, 0, 0);
+
+        var jumpCurve = _jumpCurve.Evaluate(currentTime);
+        return new Vector3(0f, 1.0f, 0f) * jumpCurve;
     }
 
     private void moveEvent(Vector2 arg0, bool isMoving)
@@ -89,7 +115,9 @@ public class Player : MonoBehaviour
             moveDir += cameraSpaceDir;
         }
 
+        _playerJumpMovement += GetJumpVector();
         _playerJumpMovement -= new Vector3(0, 9, 0) * Time.deltaTime;
+
         moveDir += _playerJumpMovement;
 
         var flags = _controller.Move(moveDir * _speed * Time.deltaTime);
