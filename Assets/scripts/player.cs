@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Vector3 movementVector; //Final movement vector, manipulated by the StateMachine actions
 
+    [SerializeField]
+    public Explosion Explostion;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
