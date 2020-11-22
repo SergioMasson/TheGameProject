@@ -16,9 +16,13 @@ public class InputReader : ScriptableObject, MainInput.IGameplayActions
 
     public event UnityAction pauseEvent;
 
-    public event UnityAction<Vector2, bool> moveEvent;
+    public event UnityAction<Vector2> moveEvent;
 
     public event UnityAction<Vector2, bool> cameraMoveEvent;
+
+    public event UnityAction enableMouseControlCameraEvent;
+
+    public event UnityAction disableMouseControlCameraEvent;
 
     private MainInput gameInput;
 
@@ -51,12 +55,7 @@ public class InputReader : ScriptableObject, MainInput.IGameplayActions
     public void OnMove(InputAction.CallbackContext context)
     {
         if (moveEvent != null)
-        {
-            if (context.phase == InputActionPhase.Canceled)
-                moveEvent.Invoke(new Vector2(0, 0), false);
-
-            moveEvent.Invoke(context.ReadValue<Vector2>(), true);
-        }
+            moveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -83,11 +82,17 @@ public class InputReader : ScriptableObject, MainInput.IGameplayActions
     public void OnCameraMove(InputAction.CallbackContext context)
     {
         if (cameraMoveEvent != null)
-        {
-            if (context.phase == InputActionPhase.Canceled)
-                cameraMoveEvent.Invoke(new Vector2(0, 0), false);
-            else
-                cameraMoveEvent.Invoke(context.ReadValue<Vector2>(), true);
-        }
+            cameraMoveEvent.Invoke(context.ReadValue<Vector2>(), IsDeviceMouse(context));
     }
+
+    public void OnMouseControlCamera(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            enableMouseControlCameraEvent?.Invoke();
+
+        if (context.phase == InputActionPhase.Canceled)
+            disableMouseControlCameraEvent?.Invoke();
+    }
+
+    private bool IsDeviceMouse(InputAction.CallbackContext context) => context.control.device.name == "Mouse";
 }

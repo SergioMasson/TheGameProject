@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/scripts/Input/mainInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/mainInput.inputactions'
 
 using System;
 using System.Collections;
@@ -55,6 +55,14 @@ public class @MainInput : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""b4f62bee-c81c-41c1-bfc1-0fc351680dd6"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseControlCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb98889f-8a3e-4a1d-8d8a-9278688bf078"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -292,11 +300,33 @@ public class @MainInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""533f8563-ffcd-4f15-8122-d979c10c2f4e"",
+                    ""name"": """",
+                    ""id"": ""91b5693f-479c-45a6-a2b1-a956ab3cc367"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2,ScaleVector2(x=0.5,y=0.5)"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""193d3a2a-7571-405d-bf98-61a890e28785"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=2,y=2)"",
+                    ""groups"": """",
+                    ""action"": ""CameraMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""KeyboardTFGH"",
+                    ""id"": ""c191327d-57c1-42bc-a653-99e0f1fa52eb"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=2,y=2)"",
                     ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": true,
@@ -304,47 +334,58 @@ public class @MainInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""c8fa9cbe-9519-47dc-8a2d-d129ef81e189"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""id"": ""099cdbbf-e174-45df-bd24-677633be3b02"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""43023543-1091-46a3-8403-9ea4059b6fa3"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""id"": ""703c8950-519f-40bf-a91a-b04ade860121"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""0812b06d-16eb-413d-8dba-03beeeecc119"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""id"": ""65b0267f-d5cb-46a9-a6a3-9b609b54dda0"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""0cbd3880-52e4-42b9-96c0-4f40d5ba0f62"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""id"": ""0e8568ab-6d3e-4944-bf18-2f2472eba6c6"",
+                    ""path"": ""<Keyboard>/h"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7fc7e3e-5904-4d95-bc72-c6dac48903b3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MouseControlCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -419,6 +460,7 @@ public class @MainInput : IInputActionCollection, IDisposable
         m_gameplay_Attack = m_gameplay.FindAction("Attack", throwIfNotFound: true);
         m_gameplay_Focus = m_gameplay.FindAction("Focus", throwIfNotFound: true);
         m_gameplay_CameraMove = m_gameplay.FindAction("CameraMove", throwIfNotFound: true);
+        m_gameplay_MouseControlCamera = m_gameplay.FindAction("MouseControlCamera", throwIfNotFound: true);
         // menu
         m_menu = asset.FindActionMap("menu", throwIfNotFound: true);
         m_menu_Newaction = m_menu.FindAction("New action", throwIfNotFound: true);
@@ -478,6 +520,7 @@ public class @MainInput : IInputActionCollection, IDisposable
     private readonly InputAction m_gameplay_Attack;
     private readonly InputAction m_gameplay_Focus;
     private readonly InputAction m_gameplay_CameraMove;
+    private readonly InputAction m_gameplay_MouseControlCamera;
     public struct GameplayActions
     {
         private @MainInput m_Wrapper;
@@ -487,6 +530,7 @@ public class @MainInput : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_gameplay_Attack;
         public InputAction @Focus => m_Wrapper.m_gameplay_Focus;
         public InputAction @CameraMove => m_Wrapper.m_gameplay_CameraMove;
+        public InputAction @MouseControlCamera => m_Wrapper.m_gameplay_MouseControlCamera;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -511,6 +555,9 @@ public class @MainInput : IInputActionCollection, IDisposable
                 @CameraMove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMove;
                 @CameraMove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMove;
                 @CameraMove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMove;
+                @MouseControlCamera.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseControlCamera;
+                @MouseControlCamera.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseControlCamera;
+                @MouseControlCamera.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseControlCamera;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -530,6 +577,9 @@ public class @MainInput : IInputActionCollection, IDisposable
                 @CameraMove.started += instance.OnCameraMove;
                 @CameraMove.performed += instance.OnCameraMove;
                 @CameraMove.canceled += instance.OnCameraMove;
+                @MouseControlCamera.started += instance.OnMouseControlCamera;
+                @MouseControlCamera.performed += instance.OnMouseControlCamera;
+                @MouseControlCamera.canceled += instance.OnMouseControlCamera;
             }
         }
     }
@@ -617,6 +667,7 @@ public class @MainInput : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnCameraMove(InputAction.CallbackContext context);
+        void OnMouseControlCamera(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
