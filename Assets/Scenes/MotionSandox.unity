@@ -995,7 +995,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647107157}
-  m_LocalRotation: {x: 0.24708746, y: -0.000000018640828, z: 0.0000000047533, w: 0.9689932}
+  m_LocalRotation: {x: 0.24708746, y: 0.000000018640828, z: -0.0000000047533, w: 0.9689932}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1433,7 +1433,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.24708745, y: -0.000000037281655, z: 0.000000009506598, w: 0.9689932}
+  m_LocalRotation: {x: 0.24708745, y: 0.000000037281655, z: -0.000000009506598, w: 0.9689932}
   m_LocalPosition: {x: -14.879754, y: 20.720016, z: -38.803978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1879,6 +1879,7 @@ MonoBehaviour:
   _freeLookCamera: {fileID: 926716777}
   _controller: {fileID: 1717080231}
   jumpInput: 0
+  dashInput: 0
   movementInput: {x: 0, y: 0, z: 0}
   movementVector: {x: 0, y: 0, z: 0}
 --- !u!143 &1717080231

@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     public bool jumpInput;
 
     [HideInInspector]
+    public bool dashInput;
+
+    [HideInInspector]
     public Vector3 movementInput; //Initial input coming from the Protagonist script
 
     [HideInInspector]
@@ -28,9 +31,21 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
+        _inputReader.attackEvent += OnAttackEvent;
+        _inputReader.attackCanceledEvent += OnAttackCanceled;
         _inputReader.moveEvent += OnMove;
         _inputReader.jumpEvent += OnJumpCanceled;
         _inputReader.jumpCanceledEvent += OnJumpStarted;
+    }
+
+    private void OnAttackCanceled()
+    {
+        dashInput = false;
+    }
+
+    private void OnAttackEvent()
+    {
+        dashInput = true;
     }
 
     private void OnJumpStarted()

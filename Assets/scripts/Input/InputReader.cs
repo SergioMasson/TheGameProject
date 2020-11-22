@@ -12,6 +12,8 @@ public class InputReader : ScriptableObject, MainInput.IGameplayActions
 
     public event UnityAction attackEvent;
 
+    public event UnityAction attackCanceledEvent;
+
     public event UnityAction focusEvent; // Used to talk, pickup objects, interact with tools like the cooking cauldron
 
     public event UnityAction pauseEvent;
@@ -71,6 +73,9 @@ public class InputReader : ScriptableObject, MainInput.IGameplayActions
     {
         if (attackEvent != null && context.phase == InputActionPhase.Performed)
             attackEvent.Invoke();
+
+        if (attackCanceledEvent != null && context.phase == InputActionPhase.Canceled)
+            attackCanceledEvent.Invoke();
     }
 
     public void OnFocus(InputAction.CallbackContext context)
