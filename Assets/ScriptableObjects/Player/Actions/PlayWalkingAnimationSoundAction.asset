@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86301206ac51ba4da5a6e8840d66c3d, type: 3}
+  m_Name: PlayWalkingAnimationSoundAction
+  m_EditorClassIdentifier: 
+  _triggerName: walking
+  _audioCue: {fileID: 11400000, guid: 4a72f1ff267d9e74d833bea8dbdb5ebb, type: 2}
+  _channel: {fileID: 11400000, guid: 5ec94e0786138a3459002ea0e7e310d2, type: 2}
+  _config: {fileID: 11400000, guid: 47e04ab7c04143a4f9c509feccfa7bbb, type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Explosion Explostion;
+
+    public event UnityAction<string> OnAnimationTriggered;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -64,5 +67,10 @@ public class Player : MonoBehaviour
     private void OnMove(Vector2 arg0)
     {
         movementInput = new Vector3(arg0.x, 0, arg0.y);
+    }
+
+    public void WalkAnimationTrigger(string trigger)
+    {
+        OnAnimationTriggered?.Invoke(trigger);
     }
 }
